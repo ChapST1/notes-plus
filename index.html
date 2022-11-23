@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite App</title>
+    <!-- css -->
+    <link rel="stylesheet" href="./css/style.css" />
+    <!-- font awesome -->
+    <script
+      src="https://kit.fontawesome.com/8ff5336caf.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body id="body">
+    <div id="app">
+      <!-- header -->
+      <header class="header">
+        <h1 class="header__title">NOTES +</h1>
+        <aside class="header__button" id="btnDark">
+          <span class="header__button-span">
+            <img
+              src="./public/icons/ph_sun-fill.png"
+              class="header__button-img"
+              alt="sun-icon"
+            />
+          </span>
+        </aside>
+      </header>
+      <div class="create-note" id="createNote">
+        <i class="fa-solid fa-plus"></i>
+      </div>
+
+      <!-- active -->
+      <aside class="create-colors" id="createColors">
+        <span class="create__color"></span>
+        <span class="create__color"></span>
+        <span class="create__color"></span>
+        <span class="create__color"></span>
+        <input type="color" name="custom" id="customColor" />
+      </aside>
+      <!-- main -->
+      <main class="main">
+        <!-- form -->
+        <form class="form">
+          <input
+            type="text"
+            class="form__input"
+            placeholder="Search"
+            id="search"
+            autocomplete="off"
+            value=""
+          />
+          <i class="fa-solid fa-magnifying-glass form__icon"></i>
+        </form>
+
+        <!-- Notes Container -->
+        <section class="notes-container"></section>
+
+        <!-- modal -->
+        <section class="modal" id="modal">
+          <!--   <div class="modal__note" id="modalNote">
+            <p id="modalText"></p>
+          </div> -->
+          <div class="modal__note notes__item" id="modalNote">
+            <aside class="modal__options">
+              <span class="notes__options-ball"></span>
+              <span class="notes__options-ball"></span>
+              <span class="notes__options-ball"></span>
+            </aside>
+            <p class="modal__text notes__text" id="modalText"></p>
+            <span class="notes__date" id="modalDate">June 12, 2022</span>
+          </div>
+          <form class="modal__form" id="modalForm">
+            <input
+              type="text"
+              class="modal__form-input"
+              autocomplete="off"
+              id="modalInput"
+              placeholder="text"
+            />
+            <input
+              type="submit"
+              value="Create"
+              class="modal__form-submit"
+              id="btnCreate"
+            />
+          </form>
+        </section>
+      </main>
+    </div>
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>
