@@ -42,8 +42,7 @@ const form = document.getElementById("modalForm");
 const input = document.getElementById("modalInput");
 const btnCreate = document.getElementById("btnCreate");
 
-//show all notes
-showNotes(allNotes);
+showSaveNotes();
 
 //functions
 function showNotes(arr) {
@@ -72,6 +71,8 @@ function showNotes(arr) {
     fragment.appendChild(div);
   });
   notesContainer.appendChild(fragment);
+
+  //show notes saved
   handleOptions();
   handleDelete();
   handleEdit();
@@ -131,8 +132,7 @@ function handleSubmit() {
 
       allNotes.unshift(newNote);
       showNotes(allNotes);
-
-      //close modal
+      saveNotes();
       createNote.classList.remove("create-note-active");
       createColors.classList.remove("create-colorsActive");
       modal.classList.remove("modalActive");
@@ -148,12 +148,11 @@ function handleDelete() {
     icon.addEventListener("click", () => {
       const id = icon.parentElement.parentElement.id;
       allNotes = allNotes.filter((element) => element.id !== id);
-      showNotes(allNotes);
-
+      saveNotes();
       if (allNotes.length === 0) {
         notesContainer.innerHTML = `
         <div class="no-notes-container">
-          <img src="/public/Rmx_Notes.svg" class="no-notes__img">
+          <img src="public/Rmx_Notes.svg" class="no-notes__img">
           <p class="no-notes__title">No notes</p>
         </div>
         `;
@@ -191,14 +190,12 @@ function miniEdit(icons, is, idInput, change) {
 
       form.addEventListener("submit", (e) => {
         e.preventDefault();
-        // const newArray = [...allNotes];
         allNotes.map((e) => {
           if (e.id === item.getAttribute("id")) {
             e[change] = formEditInput.value;
-            //e.note = formEditInput.value;
           }
         });
-        showNotes(allNotes);
+        saveNotes();
       });
     });
   });
@@ -229,17 +226,17 @@ btnDark.addEventListener("click", () => {
   body.classList.toggle("body-dark");
   if (body.className == "body-dark") {
     localStorage.setItem("DarkMode", "true");
-    btnDarkIcon.setAttribute("src", "../../public/icons/ph_moon-fill.png");
+    btnDarkIcon.setAttribute("src", "public/icons/ph_moon-fill.png");
   } else {
     localStorage.setItem("DarkMode", "false");
-    btnDarkIcon.setAttribute("src", "../../public/icons/ph_sun-fill.png");
+    btnDarkIcon.setAttribute("src", "public/icons/ph_sun-fill.png");
   }
 });
 //using local storage
 if (localStorage.getItem("DarkMode") == "true") {
   btnDark.classList.toggle("header__buttonActive");
   body.classList.toggle("body-dark");
-  btnDarkIcon.setAttribute("src", "../../public/icons/ph_moon-fill.png");
+  btnDarkIcon.setAttribute("src", "public/icons/ph_moon-fill.png");
 }
 //open modal
 createNote.addEventListener("click", () => {
@@ -247,3 +244,12 @@ createNote.addEventListener("click", () => {
   createColors.classList.toggle("create-colorsActive");
   modal.classList.toggle("modalActive");
 });
+
+//save notes to local storage
+function saveNotes() {
+  localStorage.setItem("notes", JSON.stringify(allNotes));
+  showSaveNotes();
+}
+function showSaveNotes() {
+  showNotes(JSON.parse(localStorage.getItem("notes")) || allNotes);
+}
