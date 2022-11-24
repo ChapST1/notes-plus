@@ -8,6 +8,8 @@
   --bg-button-icon: #fcfdf2;
   --bg-create-note: #a4a1f1;
 
+  --search: rgba(0, 0, 0, 0.644);
+
   --bg-border: #a8a6f6;
 }
 * {
@@ -26,6 +28,8 @@ body {
   --bg-button-icon: #ffd36a;
   --bg-create-note: #393d46;
   --title-color: #fcfdf2;
+
+  --search: rgba(255, 255, 255, 0.61);
 
   --bg-border: #ffd36a;
 }
@@ -161,7 +165,7 @@ body {
 .form,
 .form-edit {
   width: 400px;
-  padding: 0px 10px;
+  padding: 5px 10px;
   margin: 0 auto;
   border-bottom: 3px solid var(--bg-border);
   display: flex;
@@ -179,8 +183,10 @@ body {
   background-color: transparent;
   color: var(--title-color);
 }
+
 .form__icon {
   font-size: 1.2rem;
+  color: var(--search);
 }
 .filterActive {
   filter: brightness(0.5);
@@ -246,7 +252,8 @@ body {
   align-items: center;
   justify-content: center;
   gap: 3px;
-  border-radius: 10px;
+  border-radius: 8px;
+  transition: 0.5s;
   z-index: 150;
 }
 .notes__options-ball {
@@ -255,6 +262,10 @@ body {
   height: 10px;
   background-color: #fff;
   border-radius: 50%;
+}
+.notes__options:hover {
+  background-color: rgba(0, 0, 0, 0.164);
+  cursor: pointer;
 }
 /* options */
 .nav {
@@ -275,6 +286,14 @@ body {
   opacity: 0;
   visibility: hidden;
   transition: 0.2s;
+}
+.nav i {
+  transition: 0.5s;
+  cursor: pointer;
+}
+.nav i:hover {
+  opacity: 0.8;
+  transform: scale(1.2);
 }
 .navActive {
   opacity: 1;
@@ -340,7 +359,6 @@ body {
 
 .modal__note {
   width: 350px;
-  width: 28%;
   height: 350px;
   height: 250px;
   background-color: #ffe9b1;
@@ -402,4 +420,34 @@ body {
   transition: 1s;
   transform: translateX(0);
   opacity: 1;
+}
+
+@media (max-width: 480px) {
+  .header__title {
+    font-size: 2rem;
+  }
+  .header__button {
+    transform: scale(0.9);
+  }
+  .create-note {
+    width: 60px;
+    height: 60px;
+    font-size: 1.3rem;
+  }
+  .form {
+    width: 100%;
+  }
+  .modal__note {
+    width: 80%;
+    height: 200px;
+  }
+  .modal__form {
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .modal__form-input {
+    width: 65%;
+  }
 }

@@ -4,21 +4,21 @@ let fragment = document.createDocumentFragment();
 let allNotes = [
   {
     id: crypto.randomUUID(),
-    note: "HOLA TIKTOK",
+    note: "Hello World 👋🌍",
     date: "12-12-2020",
     color: "rgb(155, 233, 177)",
   },
   {
     id: crypto.randomUUID(),
-    note: "Hola Chat",
+    note: "This is an impressive note for everyone 📝",
     date: "12-12-2020",
     color: "rgb(255, 132, 177)",
   },
   {
     id: crypto.randomUUID(),
-    note: "adios",
+    note: "Delete me if you can 🤬",
     date: "12-12-2020",
-    color: "rgb(255, 231, 255)",
+    color: "rgb(89, 126, 238)",
   },
 ];
 //Dark Mode
@@ -228,11 +228,19 @@ btnDark.addEventListener("click", () => {
   btnDark.classList.toggle("header__buttonActive");
   body.classList.toggle("body-dark");
   if (body.className == "body-dark") {
+    localStorage.setItem("DarkMode", "true");
     btnDarkIcon.setAttribute("src", "./public/icons/ph_moon-fill.png");
   } else {
+    localStorage.setItem("DarkMode", "false");
     btnDarkIcon.setAttribute("src", "./public/icons/ph_sun-fill.png");
   }
 });
+//using local storage
+if (localStorage.getItem("DarkMode") == "true") {
+  btnDark.classList.toggle("header__buttonActive");
+  body.classList.toggle("body-dark");
+  btnDarkIcon.setAttribute("src", "./public/icons/ph_moon-fill.png");
+}
 //open modal
 createNote.addEventListener("click", () => {
   createNote.classList.toggle("create-note-active");
