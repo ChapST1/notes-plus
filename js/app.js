@@ -152,7 +152,7 @@ function handleDelete() {
       if (allNotes.length === 0) {
         notesContainer.innerHTML = `
         <div class="no-notes-container">
-          <img src="../public/Rmx_Notes.svg" alt="icon" class="no-notes__img">
+          <img src="public/Rmx_Notes.svg" class="no-notes__img">
           <p class="no-notes__title">No notes</p>
         </div>
         `;
