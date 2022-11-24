@@ -152,7 +152,7 @@ function handleDelete() {
       if (allNotes.length === 0) {
         notesContainer.innerHTML = `
         <div class="no-notes-container">
-          <img src="public/Rmx_Notes.svg" class="no-notes__img">
+          <img src="./public/Rmx_Notes.svg" class="no-notes__img">
           <p class="no-notes__title">No notes</p>
         </div>
         `;
@@ -226,17 +226,17 @@ btnDark.addEventListener("click", () => {
   body.classList.toggle("body-dark");
   if (body.className == "body-dark") {
     localStorage.setItem("DarkMode", "true");
-    btnDarkIcon.setAttribute("src", "../public/icons/ph_moon-fill.png");
+    btnDarkIcon.setAttribute("src", "./public/icons/ph_moon-fill.png");
   } else {
     localStorage.setItem("DarkMode", "false");
-    btnDarkIcon.setAttribute("src", "../public/icons/ph_sun-fill.png");
+    btnDarkIcon.setAttribute("src", "./public/icons/ph_sun-fill.png");
   }
 });
 //using local storage
 if (localStorage.getItem("DarkMode") == "true") {
   btnDark.classList.toggle("header__buttonActive");
   body.classList.toggle("body-dark");
-  btnDarkIcon.setAttribute("src", "../public/icons/ph_moon-fill.png");
+  btnDarkIcon.setAttribute("src", "./public/icons/ph_moon-fill.png");
 }
 //open modal
 createNote.addEventListener("click", () => {
