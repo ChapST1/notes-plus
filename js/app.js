@@ -42,8 +42,9 @@ const form = document.getElementById("modalForm");
 const input = document.getElementById("modalInput");
 const btnCreate = document.getElementById("btnCreate");
 
-showSaveNotes();
 
+showNotes(allNotes);
+createNewNote();
 //functions
 function showNotes(arr) {
   notesContainer.innerHTML = "";
@@ -79,8 +80,6 @@ function showNotes(arr) {
   selectColor();
   handleSearch();
 }
-createNewNote();
-
 function handleOptions() {
   //variables
   const btnOptions = document.querySelectorAll(".notes__options"); //options ...
@@ -109,9 +108,8 @@ function createNewNote() {
     modalText.textContent = input.value;
   });
   let now = new Date();
-  modalDate.textContent = `${now.getDate()}-${
-    now.getMonth() + 1
-  }-${now.getFullYear()}`;
+  modalDate.textContent = `${now.getDate()}-${now.getMonth() + 1
+    }-${now.getFullYear()}`;
   //function
   handleSubmit();
 }
@@ -132,7 +130,6 @@ function handleSubmit() {
 
       allNotes.unshift(newNote);
       showNotes(allNotes);
-      saveNotes();
       createNote.classList.remove("create-note-active");
       createColors.classList.remove("create-colorsActive");
       modal.classList.remove("modalActive");
@@ -148,7 +145,6 @@ function handleDelete() {
     icon.addEventListener("click", () => {
       const id = icon.parentElement.parentElement.id;
       allNotes = allNotes.filter((element) => element.id !== id);
-      saveNotes();
       if (allNotes.length === 0) {
         notesContainer.innerHTML = `
         <div class="no-notes-container">
@@ -157,6 +153,7 @@ function handleDelete() {
         </div>
         `;
       }
+      showNotes(allNotes);
     });
   });
 }
@@ -193,9 +190,9 @@ function miniEdit(icons, is, idInput, change) {
         allNotes.map((e) => {
           if (e.id === item.getAttribute("id")) {
             e[change] = formEditInput.value;
+            showNotes(allNotes)
           }
         });
-        saveNotes();
       });
     });
   });
@@ -245,11 +242,3 @@ createNote.addEventListener("click", () => {
   modal.classList.toggle("modalActive");
 });
 
-//save notes to local storage
-function saveNotes() {
-  localStorage.setItem("notes", JSON.stringify(allNotes));
-  showSaveNotes();
-}
-function showSaveNotes() {
-  showNotes(JSON.parse(localStorage.getItem("notes")) || allNotes);
-}
